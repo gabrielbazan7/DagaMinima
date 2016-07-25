@@ -24,11 +24,11 @@ angular.module('starter').run(function($rootScope, $state, $log, $ionicPlatform,
   });
 
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-    console.log('Route change from:' + (fromState.name || '-') + ' to:' + toState.name);
+      console.log('Route change from:' + (fromState.name || '-') + ' to:' + toState.name);
 
-    if (platformService.isCordova) {
-      if (toState.name == 'facebook') {
-        return;
+      if (platformService.isCordova) {
+        if (toState.name == 'facebook')
+          return;
       }
       if (!storageService.getLocalUser().userID && fromState.name != 'facebook') {
         event.preventDefault();
