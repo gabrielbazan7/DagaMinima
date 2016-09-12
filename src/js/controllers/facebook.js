@@ -12,7 +12,7 @@ angular.module('starter.controllers').controller('facebookLoginController', func
 
     var authResponse = success.authResponse;
 
-    getFacebookProfileInfo(authResponse, function(user, err) {
+    getFacebookProfileInfo(authResponse, function(profileInfo, err) {
       if (err) {
         // Fail get profile info
         console.log('profile info fail: ' + err);
@@ -21,15 +21,15 @@ angular.module('starter.controllers').controller('facebookLoginController', func
 
       var user = {
         facebookToken: authResponse,
-        userID: user.id,
-        name: user.name,
-        email: user.email,
-        verified: user.verified,
-        ageRange: user.age_range.min,
-        location: user.location.name,
-        education: user.education[0].school.name,
-        workPositionName: user.work[0].position.name,
-        workEmployerName: user.work[0].employer.name,
+        userID: profileInfo.id,
+        name: profileInfo.name,
+        email: profileInfo.email,
+        verified: profileInfo.verified,
+        ageRange: profileInfo.age_range.min,
+        location: profileInfo.location.name,
+        education: profileInfo.education[0].school.name,
+        workPositionName: profileInfo.work[0].position.name,
+        workEmployerName: profileInfo.work[0].employer.name,
         about: null,
         admissionDate: moment().unix(),
         picture: "http://graph.facebook.com/" + authResponse.userID + "/picture?width=600&height=600"
